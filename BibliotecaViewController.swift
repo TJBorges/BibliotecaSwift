@@ -39,8 +39,6 @@ extension BibliotecaViewController: UICollectionViewDataSource {
 
         let livro = biblioteca.livros[indexPath.row]
         cell.titleLabel.text = livro.title
-        
-        //cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap(_:))))
 
         let gestureRecognizer = MyTapGesture(target: self, action: #selector(tap(_:)))
         gestureRecognizer.livro = livro
@@ -54,12 +52,6 @@ extension BibliotecaViewController: UICollectionViewDataSource {
     }
     
     @objc func tap(_ sender: MyTapGesture) {
-//        guard let detailController = self.storyboard?.instantiateViewController(identifier: "BookDetailView") as! DetalhesViewController
-//        else {  fatalError("não ha tela de detalhe") }
-        //self.navigationController?.pushViewController(detailController, animated: true)
-        //print( sender.livro.thumbnailUrl as Any)
-        
-        
         let detailsView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookDetailView") as! DetalhesViewController
         
         detailsView.livro = sender.livro
@@ -71,7 +63,6 @@ extension BibliotecaViewController: UICollectionViewDataSource {
 class MyTapGesture: UITapGestureRecognizer {
     var livro = Livro()
 }
-
 
 extension BibliotecaViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
@@ -89,18 +80,3 @@ extension BibliotecaViewController: UICollectionViewDataSourcePrefetching {
         prefetcher.stopPrefetching(with: urls)
     }
 }
-
-//extension UIImageView {
-//    func load(url: URL) {
-//        DispatchQueue.global().async { [weak self] in
-//            if let data = try? Data(contentsOf: url) {
-//                if let image = UIImage(data: data) {
-//                    DispatchQueue.main.async {
-//                        self?.image = image
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-

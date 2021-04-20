@@ -44,8 +44,8 @@ class DetalhesViewController: UIViewController {
         self.lbISBN.text = livro!.isbn
         
         self.date = livro!.publishedDate
-        let formate = getFormattedDate((date)!, "dd/MMM/yyyy")
-        self.lbPublished.text = formate
+        let dateFormate = getFormattedDate((date)!)
+        self.lbPublished.text = dateFormate
         
         self.lbPags.text = String(livro!.pageCount)
         
@@ -58,7 +58,7 @@ class DetalhesViewController: UIViewController {
         
     }
     
-    func getFormattedDate(_ date: Date, _ format: String) -> String {
+    func getFormattedDate(_ date: Date) -> String {
             let dateformat = DateFormatter()
             dateformat.dateStyle = .medium
             dateformat.timeStyle = .none
